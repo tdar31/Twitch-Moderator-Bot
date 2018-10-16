@@ -1,0 +1,24 @@
+{
+  "name": "Twitch-Moderator-Bot",
+  "version": "1.0.0",
+  "description": "Twitch-Moderator-Bot",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tdar31/Twitch-Moderator-Bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tdar31/Twitch-Moderator-Bot/issues"
+  },
+  "homepage": "https://github.com/tdar31/Twitch-Moderator-Bot#readme",
+  "dependencies": {
+    "dotenv": "^6.1.0",
+    "twitch-js": "^1.2.14"
+  }
+}
