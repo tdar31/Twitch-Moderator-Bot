@@ -55,6 +55,7 @@ client.on('chat', (channel, user, message, self) => {
     }
 
     //Commands only mods and the broadcaster can use
+    //The viewer and mod commands will like be split into their own files as they grow larger and larger
     if(user['mod'] || broadcaster) {
 
         //Emote only functionality
@@ -106,12 +107,6 @@ client.on('chat', (channel, user, message, self) => {
         if(message === '!slowmodeoff') {
             client.slow(streamChannel)
         }
-
-
-
-
-
-
 
 
     }
