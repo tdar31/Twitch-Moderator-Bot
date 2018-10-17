@@ -27,7 +27,7 @@ client.on('chat', (channel, user, message, self) => {
     // Don't listen to my own messages
     if (self) return;
 
-    //Assigns channel name to contant
+    //Assigns channel name to constant
     var n = channel.split('#')
     const streamChannel = n[1]
 
@@ -36,8 +36,10 @@ client.on('chat', (channel, user, message, self) => {
 
     //Broadcaster is not returned as a mod by default so the 'broadcaster' variable is created to check if the user typing is the broadcaster
     var broadcaster;
-    //This part must be hardcoded as a bot with more than one channel in the channels prop  will mess this up if you use options.channels
-    //If you use options.channels broadcasters will have mod access on any other channels with access to the bot
+
+    //I need to do some more testing regarding if this part must be hard coded or not.  the options.channels prop is
+    //something I haven't messed around with while having more than one channel set up.
+    //Will leave this part hard coded instead of using streamChannel but that may change in the future
     if(user.username == 'test9000channel') {
         broadcaster = true;
     } else {
@@ -86,10 +88,11 @@ client.on('chat', (channel, user, message, self) => {
             client.action(streamChannel, 'Followers Only Mode has now been turned off')
         }
 
+        //Slow mode functionality
         if(message.includes('!slowmode')) {
             var duration = message.split(' ')
 
-            //Checks to see if duration input is a number.  Sets to 30 mins if invalid or blank
+            //Checks to see if duration input is a number.  Sets to 300 seconds if invalid or blank
             if(isNaN(duration[1])) {
                 client.slow(streamChannel, 30)
                 client.action(streamChannel, 'The chat has now been set to Follower Only Mode')
