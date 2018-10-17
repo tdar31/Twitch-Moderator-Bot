@@ -14,7 +14,7 @@ const options = {
         //temp token
         password: process.env.TOKEN
     },
-    //need to make another channel 
+    //Test channel
     channels: ['#test9000channel']
 };
 
@@ -38,16 +38,16 @@ client.on('chat', (channel, user, message, self) => {
         broadcaster = false;
     }
 
-    //Test message
-    if(message === '!hi') {
-        client.action('test9000channel', 'it worked!')
+    //Rules message slash test message
+    if(message === '!rules') {
+        client.say('test9000channel', 'Rule 1: ---')
+        client.say('test9000channel', 'Rule 2: ---')
+        client.say('test9000channel', 'Rule 3: ---')
+        client.say('test9000channel', 'Rule 4: ---')
     }
 
     //Commands only mods and the broadcaster can use
     if(user['mod'] || broadcaster) {
-        // if(message === '!rules') {
-        //     client.action('test9000channel', 'it worked!')
-        // }
 
         //Emote only functionality
         if(message === '!emoteonly') {
@@ -61,15 +61,24 @@ client.on('chat', (channel, user, message, self) => {
         }
 
         //Follower only functionality
-        if(message === '!followeronly') {
-            client.followersonly('test9000channel', 30)
-            client.action('test9000channel', 'The chat has now been set to Follower Only Mode')
+        if(message.includes('!followeronly')) {
+            var duration = message.split(' ')
+
+            if(isNaN(duration[1])) {
+                client.followersonly('test9000channel', 30)
+                client.action('test9000channel', 'The chat has now been set to Follower Only Mode')
+            } else {
+                client.followersonly('test9000channel', duration[1])
+                client.action('test9000channel', 'The chat has now been set to Follower Only Mode')
+            }
+
         }
 
         if(message === '!followeronlyoff') {
             client.followersonlyoff('test9000channel');
             client.action('test9000channel', 'Followers Only Mode has now been turned off')
         }
+
     }
 
     // //Commands that regular chatters can use
