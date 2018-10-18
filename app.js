@@ -71,14 +71,14 @@ client.on('chat', (channel, user, message, self) => {
 
         //Follower only functionality
         if(message.includes('!followeronly')) {
-            var duration = message.split(' ')
+            var command = message.split(' ')
 
             //Checks to see if duration input is a number.  Sets to 30 mins if invalid or blank
-            if(isNaN(duration[1])) {
+            if(isNaN(command[1])) {
                 client.followersonly(streamChannel, 30)
                 client.action(streamChannel, 'The chat has now been set to Follower Only Mode')
             } else {
-                client.followersonly(streamChannel, duration[1])
+                client.followersonly(streamChannel, command[1])
                 client.action(streamChannel, 'The chat has now been set to Follower Only Mode')
             }
 
@@ -91,15 +91,15 @@ client.on('chat', (channel, user, message, self) => {
 
         //Slow mode functionality
         if(message.includes('!slowmode')) {
-            var duration = message.split(' ')
+            var command = message.split(' ')
 
             //Checks to see if duration input is a number.  Sets to 300 seconds if invalid or blank
-            if(isNaN(duration[1])) {
+            if(isNaN(command[1])) {
                 client.slow(streamChannel, 30)
-                client.action(streamChannel, 'The chat has now been set to Follower Only Mode')
+                client.action(streamChannel, 'The chat has now been set to Slow Mode')
             } else {
-                client.slow(streamChannel, duration[1])
-                client.action(streamChannel, 'The chat has now been set to Follower Only Mode')
+                client.slow(streamChannel, command[1])
+                client.action(streamChannel, 'The chat has now been set to Slow Mode')
             }
 
         }
@@ -108,6 +108,45 @@ client.on('chat', (channel, user, message, self) => {
             client.slow(streamChannel)
         }
 
+        //Timeout functionality
+        if(message.includes('!timeout')) {
+            var command = message.split(' ')
+            //Update sender to typed in command
+            sender = command[1];
+            var duration = command[2];
+            // var reason = command[3];
+
+            client.timeout(streamChannel, sender, duration)
+
+            if(sender = null) {
+                client.action(streamChannel, 'No user selected')
+            }
+
+            // Checks to see if duration input is a number.  Sets to 300 seconds if invalid or blank
+            if(isNaN(duration)) {
+                client.timeout(streamChannel, sender, 300)
+            } else {
+                client.timeout(streamChannel, sender, duration)
+            }
+
+        }
+
+        //Unban function (works on timeouts and bans)
+        if(message.includes('!unban')) {
+            var command = message.split(' ')
+            sender = command[1];
+
+            client.unban(streamChannel, sender)
+            .then(function(data) {
+                // data returns [channel, username]
+                console.log (data[1])
+                client.action(streamChannel, data[1] + ' has been unbanned AngelThump')
+              })
+              .catch(function(err) {
+                //error
+              });
+
+        }
 
     }
 
