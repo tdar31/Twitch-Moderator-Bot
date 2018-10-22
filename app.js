@@ -142,7 +142,9 @@ client.on('chat', (channel, user, message, self) => {
             client.unban(streamChannel, sender)
             .then(function(data) {
                 // data returns [channel, username]
-                client.action(streamChannel, data[1] + ' has been unbanned AngelThump')
+                var chatter = data[1]
+                client.action(streamChannel, chatter + ' has been unbanned AngelThump')
+                client.whisper(chatter, 'You have been unbanned from ' + streamChannel)
               })
               .catch(function(err) {
                 console.log(err)
@@ -161,7 +163,8 @@ client.on('chat', (channel, user, message, self) => {
             client.ban(streamChannel, sender)
             .then(function(data) {
                 // data returns [channel, username]
-                client.action(streamChannel, data[1] + ' has been banned DuckerZ')
+                var chatter = data[1]
+                client.action(streamChannel, chatter + ' has been banned DuckerZ')
               })
               .catch(function(err) {
                 console.log(err)
@@ -177,6 +180,15 @@ client.on('chat', (channel, user, message, self) => {
         if(message === '!subonlyoff') {
             client.subscribersoff(streamChannel)
             client.action(streamChannel, 'Sub Only Mode has now been turned off')
+        }
+
+        //Whispers list of moderators of channel
+        if(message === '!mods') {
+            client.mods(streamChannel)
+            .then(function(data) {
+                console.log(data)
+                client.whisper(sender, 'The mods of ' + streamChannel + ' are ' + data)
+            })
         }
 
     }
