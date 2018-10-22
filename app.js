@@ -1,5 +1,6 @@
 require('dotenv').config();
 const twitch = require('twitch-js');
+// var viewercmd = require("./viewercommands"); Other JS files trying to decide
 
 const options = {
     options: {
@@ -47,6 +48,7 @@ client.on('chat', (channel, user, message, self) => {
     }
 
     //Rules message slash test message
+    //Also used as just a test message
     if(message === '!rules') {
         client.say(streamChannel, 'Rule 1: ---')
         client.say(streamChannel, 'Rule 2: ---')
@@ -134,18 +136,47 @@ client.on('chat', (channel, user, message, self) => {
         //Unban function (works on timeouts and bans)
         if(message.includes('!unban')) {
             var command = message.split(' ')
+            //Update sender to typed in command
             sender = command[1];
 
             client.unban(streamChannel, sender)
             .then(function(data) {
                 // data returns [channel, username]
-                console.log (data[1])
                 client.action(streamChannel, data[1] + ' has been unbanned AngelThump')
               })
               .catch(function(err) {
-                //error
+                console.log(err)
               });
 
+        }
+
+        //Ban function
+        if(message.includes('!ban')) {
+
+            var command = message.split(' ')
+
+            // Update sender to typed in command
+            sender = command[1];
+
+            client.ban(streamChannel, sender)
+            .then(function(data) {
+                // data returns [channel, username]
+                client.action(streamChannel, data[1] + ' has been banned DuckerZ')
+              })
+              .catch(function(err) {
+                console.log(err)
+              });
+        }
+
+        //Subscriber only functionality
+        if(message === '!subonly') {
+            client.subscribers(streamChannel)
+            client.action(streamChannel, 'The chat has now been set to Sub Only Mode')
+        }
+
+        if(message === '!subonlyoff') {
+            client.subscribersoff(streamChannel)
+            client.action(streamChannel, 'Sub Only Mode has now been turned off')
         }
 
     }
