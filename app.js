@@ -1,6 +1,5 @@
 require('dotenv').config();
 const twitch = require('twitch-js');
-// var viewercmd = require("./viewercommands"); Other JS files trying to decide
 
 const options = {
     options: {
@@ -25,15 +24,13 @@ const client = new twitch.client(options);
 client.connect();
 
 client.on('chat', (channel, user, message, self) => {
+
     // Don't listen to my own messages
     if (self) return;
 
     //Assigns channel name to constant
     var n = channel.split('#')
     const streamChannel = n[1]
-
-    //Assign sender as user/chatter
-    let sender = user['display-name']
 
     //Broadcaster is not returned as a mod by default so the 'broadcaster' variable is created to check if the user typing is the broadcaster
     var broadcaster;
@@ -46,6 +43,9 @@ client.on('chat', (channel, user, message, self) => {
     } else {
         broadcaster = false;
     }
+
+    //Assign sender as user/chatter
+    let sender = user['display-name']
 
     //Rules message slash test message
     //Also used as just a test message
@@ -182,6 +182,17 @@ client.on('chat', (channel, user, message, self) => {
             client.action(streamChannel, 'Sub Only Mode has now been turned off')
         }
 
+        //R9K mode
+        if(message === '!r9k') {
+            client.r9kbeta(streamChannel)
+            client.action(streamChannel, 'R9K Mode has now been turned on')
+        }
+
+        if(message === '!r9koff') {
+            client.r9kbetaoff(streamChannel)
+            client.action(streamChannel, 'R9K Mode has now been turned off')
+        }
+
         //Whispers list of moderators of channel
         if(message === '!mods') {
             client.mods(streamChannel)
@@ -189,6 +200,39 @@ client.on('chat', (channel, user, message, self) => {
                 console.log(data)
                 client.whisper(sender, 'The mods of ' + streamChannel + ' are ' + data)
             })
+        }
+
+        //Host command
+        //Only broadcaster can do this which is a restriction by Twitch
+        if(message.includes('!host')) {
+            var command = message.split(' ')
+            //Update sender to typed in command
+            var target = command[1];
+
+            client.host(streamChannel, target)
+            .then(function(data) {
+                // data returns [channel, username]
+                client.action(streamChannel, target + ' has been hosted')
+              })
+              .catch(function(err) {
+                console.log(err)
+              });
+        }
+
+        //Unhost command
+        if(message.includes('!unhost')) {
+            var command = message.split(' ')
+            //Update sender to typed in command
+            var target = command[1];
+
+            client.unhost(streamChannel)
+            .then(function(data) {
+                // data returns [channel, username]
+                client.whisper(streamChannel, target + ' has been unhosted')
+              })
+              .catch(function(err) {
+                console.log(err)
+              });
         }
 
     }
