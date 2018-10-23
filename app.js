@@ -56,6 +56,18 @@ client.on('chat', (channel, user, message, self) => {
         client.say(streamChannel, 'Rule 4: ---')
     }
 
+    if(message === '!youtube') {
+        client.say(streamChannel, 'Youtube Channel: youtube.com')
+    }
+
+    if(message === '!twitter') {
+        client.say(streamChannel, 'Twitter: twitter.com')
+    }
+
+    if(message === '!instagram') {
+        client.say(streamChannel, 'Instagram: instagram.com')
+    }
+
     //Commands only mods and the broadcaster can use
     //The viewer and mod commands will like be split into their own files as they grow larger and larger
     if(user['mod'] || broadcaster) {
