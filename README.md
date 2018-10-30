@@ -7,7 +7,7 @@ https://trello.com/b/ECw2iJax/twitchbot
 *Viewer Commands*
 --
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; REE
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The following commands are accessable to all viewers (including mods and broadcasters)
 
 1. **Rules**
 
@@ -24,6 +24,8 @@ https://trello.com/b/ECw2iJax/twitchbot
 
 *Moderator/Broadcaster Commands*
 --
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; The following commands are only accessable to channel moderators and the broadcaster
 
 1. **Emote Only Mode**
    * Configuration
