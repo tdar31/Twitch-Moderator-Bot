@@ -44,13 +44,19 @@ https://trello.com/b/ECw2iJax/twitchbot
 
     * !slowmode / !slowmodeoff
 
-        * The follwoing turns slow mode on and off.  It prevents viewers from .....  This bot, channel mods and the broadcaster are immune.
+        * The following turns slow mode on and off.  It prevents viewers from .....  This bot, channel mods and the broadcaster are immune.
 
 1. **r9k Mode**
 
     * !r9k / !r9koff
 
-        * The following turns robot9000 (r9k) mode on.  Require viewers to send a unique message from their previous one.  This bot, channel mods and broadcaster are immune to this.
+        * The following turns robot9000 (r9k) mode on and off.  Require viewers to send a unique message from their previous one.  This bot, channel mods and broadcaster are immune to this.
+
+1.  **Follower only Mode**
+
+    * !followeronly [duration] / !followeronlyoff 
+
+        * The following turns follower only mode on and off.  It prevents viewers that aren't following the broadcaster's channel from chatting.  The commands allows for a custom duration where the units are in seconds.  The duration is how long the account has been following the broadcaster; for example if you did 10 minutes in order to chat the account would have to be following the broadcaster for at least 10 minutes or more in order to chat.  If the mod/broadcaster does not use a duration or enters a value that isn't a number the duration defaults to 30 minutes.  Mods and broadcasters are not restricted by this command.
 
 1. **Subscriber Only Mode**
 
@@ -62,7 +68,7 @@ https://trello.com/b/ECw2iJax/twitchbot
 
     * !timeout [user] [duration]
 
-        * The following times out a viewer from chatting.  The commands allows for a custom curation where the units are in seconds.  If the mod/broadcaster does not use a duration or enters a value that isn't a number the duration defaults to 300 seconds.  Mods and broadcasters cannot be banned they are modded on or the broadcaster of.
+        * The following times out a viewer from chatting.  The commands allows for a custom duration where the units are in seconds.  If the mod/broadcaster does not use a duration or enters a value that isn't a number the duration defaults to 300 seconds.  Mods and broadcasters cannot be banned they are modded on or the broadcaster of.
 
 1.  **Ban user**
 
