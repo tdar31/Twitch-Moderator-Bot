@@ -55,6 +55,13 @@ client.on("chat", (channel, user, message, self) => {
     client.say(streamChannel, "Rule 4: ---");
   }
 
+  //FAQ
+
+  if (message == !botfaq) {
+    client.say(streamChannel, "The FAQ for the bot and all the chat commands available can be found at https://github.com/tdar31/Twitch-Moderator-Bot")
+  } 
+
+  //Social links
   if (message === "!youtube") {
     client.say(streamChannel, "Youtube Channel: youtube.com");
   }

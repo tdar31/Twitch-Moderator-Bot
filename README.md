@@ -91,7 +91,7 @@ https://trello.com/b/ECw2iJax/twitchbot
 *Design Choices*
 --
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lack of information passed along when Twitch returns an error
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Lack of information passed along when Twitch returns an error*
 
 When commands have issues with syntax or formatting Twitch will return an error with the information regarding what occured.  Currently the bot is setup to return those errors in the form of console.log.  The reason why there are no notices for this is for a few reasons.
 
@@ -117,6 +117,6 @@ This one is pretty subjective but with the majority of the commands being only a
 
 Lastly the goal of the bot is to be unintruisve to the channel experience as a whole.  It's meant to help assist the broadcaster and give viewers relavent info but quietly sit in the background outside of that.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Lack of language and link filter
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Lack of language and link filter*
 
 Long story short Twitch's built in language and link parser is pretty robust compared to other parts of Twitch chat.  This is larger due to highly inflamatory language and dangerous links can become a pretty large liablity for channels and Twitch itself so it's something that is currently fairly solid.  Additionally many channels have workarounds for moderating links such as requiring chatters to send it to moderators before it's allowed to be posted or only allowing paid subscribers access to post links.
