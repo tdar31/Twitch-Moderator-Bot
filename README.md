@@ -97,19 +97,15 @@ When commands have issues with syntax or formatting Twitch will return an error 
 
     * Length and how many types of errors Twitch can return
 
-Many of these errors are a few sentences explaining the issue and often are related to syntax issues for example a ban or timeout on a user that does not exist (likely a spelling error).  There is some sanitation I built into the bot for certain commands such as timeout or ??? which check for the duration to be a number and if not pass through a hardcoded default number instead.  Additionally from the twitch js library there are xx total possible errors that Twitch can return; many of which are things such as a certain mode is already active or etc. 
+Many of these errors are a few sentences explaining the issue and often are related to syntax issues for example a ban or timeout on a user that does not exist (likely a spelling error).  There is some sanitation I built into the bot for certain commands such as timeout or followeronly which check for the duration to be a number and if not pass through a hardcoded default number instead.  Additionally from the twitch js library there are xx total possible errors that Twitch can return; many of which are things such as a certain mode is already active or etc. 
 
     * Bot can quickly become very intrusive to the chat experience
 
 While error information is always important it can be very difficult to naviage how to provide the user with the feedback because of how intrusive it becomes.  If the bot returned the errors in Twitch chat the chat becomes filled with lines of text regarding errors which can completely ruins the chatting experience.  This can be solved somewhat in the form of whispers but 
 
-    - Chat commands are relatively short and sometimes typed quite often
+    * Chat commands are relatively short and sometimes typed quite often
 
 Most commands are under six or seven characters total and most do not take in parameters.  This means a huge majority of errors (100% in the case for viewer commands) returned will be spelling/syntax related.  Using the FAQ command is a way for this to be resolved.
-
-    * Twitch's native GUI
-
-Twitch has a native GUI with buttons and sliders that can achieve a decent amount of what this bot can do.  It's a way to check against bot if certain commands work. For example if the timeout function doesn't do anything using the bot command but does work using the slider/button in the Twitch chat GUI it's a way to test without intrusive chat messages.
 
     * Moderators are meant to be trusted and educated
 
