@@ -12,15 +12,15 @@ https://trello.com/b/ECw2iJax/twitchbot
 
 1. **FAQ**
 
-    * !faq
+    * !botfaq
 
-        * Posts link in chat to Github repo with documentation for all the available commmands for the bot.
+        * The following posts link in chat to Github repo with documentation for all the available commmands for the bot.
 
 1. **Rules**
 
     * !rules
 
-        *  Triggers the rules command which will post the channels rules in the chat
+        *  The following posts the channels rules in the chat.
 
 1. **Socials**
 
@@ -38,7 +38,7 @@ https://trello.com/b/ECw2iJax/twitchbot
 
    * !emoteonly / !emoteonlyoff
 
-        * The following turnrs emote only on and off.  It prevents viewers from chatting with anything other than Twitch emotes.  This bot, channel mods and the broadcaster are immune to it.
+        * The following turns emote only on and off.  It prevents viewers from chatting with anything other than Twitch emotes.  This bot, channel mods and the broadcaster are immune to it.
 
 1. **Slow Mode**
 
@@ -50,7 +50,7 @@ https://trello.com/b/ECw2iJax/twitchbot
 
     * !r9k / !r9koff
 
-        * The following turns robot9000 (r9k) mode on and off.  Require viewers to send a unique message from their previous one.  This bot, channel mods and broadcaster are immune to this.
+        * The following turns robot9000 (r9k) mode on and off.  Requires viewers to send a unique message from their previous one and is meant to limit spam.  This bot, channel mods and broadcaster are immune to this.
 
 1.  **Follower only Mode**
 

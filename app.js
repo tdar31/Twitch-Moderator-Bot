@@ -1,5 +1,20 @@
 require("dotenv").config();
 const twitch = require("twitch-js");
+// var $;
+// require("jsdom").env("", function(err, window) {
+//   if (err) {
+//       console.error(err);
+//       return;
+//   }
+
+//   $ = require("jquery")(window);
+// });
+
+var LastfmAPI = require('lastfmapi');
+var lfm = new LastfmAPI({
+	'api_key' : process.env.LFTOKEN,
+	'secret' : process.env.LFSECRET
+});
 
 const options = {
   options: {
@@ -57,9 +72,22 @@ client.on("chat", (channel, user, message, self) => {
 
   //FAQ
 
-  if (message == !botfaq) {
-    client.say(streamChannel, "The FAQ for the bot and all the chat commands available can be found at https://github.com/tdar31/Twitch-Moderator-Bot")
-  } 
+  if (message === "!botfaq") {
+    client.say(
+      streamChannel,
+      "The FAQ for the bot and all the chat commands available can be found at https://github.com/tdar31/Twitch-Moderator-Bot"
+    );
+  }
+
+  if (message === "!song") {
+    lfm.track.getInfo({
+      'artist' : 'Poliça',
+      'track' : 'Wandering Star'
+    }, function (err, track) {
+      if (err) { throw err; }
+      console.log(track);
+    });
+  }
 
   //Social links
   if (message === "!youtube") {
