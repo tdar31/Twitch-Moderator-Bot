@@ -1,20 +1,13 @@
 require("dotenv").config();
 const twitch = require("twitch-js");
-// var $;
-// require("jsdom").env("", function(err, window) {
-//   if (err) {
-//       console.error(err);
-//       return;
-//   }
 
-//   $ = require("jquery")(window);
-// });
+var jsdom = require('jsdom');
+const { JSDOM } = jsdom;
+const { window } = new JSDOM();
+const { document } = (new JSDOM('')).window;
+global.document = document;
 
-var LastfmAPI = require('lastfmapi');
-var lfm = new LastfmAPI({
-	'api_key' : process.env.LFTOKEN,
-	'secret' : process.env.LFSECRET
-});
+var $ = jQuery = require('jquery')(window);
 
 const options = {
   options: {
@@ -79,19 +72,25 @@ client.on("chat", (channel, user, message, self) => {
     );
   }
 
+  //Song command
   if (message === "!song") {
-    lfm.track.getInfo({
-      'artist' : 'Poliça',
-      'track' : 'Wandering Star'
-    }, function (err, track) {
-      if (err) { throw err; }
-      console.log(track);
+
+    //Username of last.fm account tied to broadcaster
+    //As a placeholder to show off the function working I have used my personal account
+    var user = "tdnaded";
+    var queryURL = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=" + user + "&api_key=" + process.env.LFTOKEN + "&format=json";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      console.log(response);
     });
   }
 
   //Social links
   if (message === "!youtube") {
-    client.say(streamChannel, "Youtube Channel: youtube.com");
+    client.say(streamChannel, "Youtube Channel: youtube.com"); 
   }
 
   if (message === "!twitter") {
