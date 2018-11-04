@@ -76,15 +76,31 @@ client.on("chat", (channel, user, message, self) => {
   if (message === "!song") {
 
     //Username of last.fm account tied to broadcaster
-    //As a placeholder to show off the function working I have used my personal account
+    //As a placeholder to show off the function working I have used my personal last.fm account
     var user = "tdnaded";
     var queryURL = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=" + user + "&api_key=" + process.env.LFTOKEN + "&format=json";
 
     $.ajax({
       url: queryURL,
       method: "GET"
-    }).then(function(response) {
-      console.log(response);
+    }).then(function(res) {
+      // console.log(res.recenttracks.track[0].date);
+      var time;
+      var date = res.recenttracks.track[2].date;
+      var artist = res.recenttracks.track[0].artist["#text"];
+      var song = res.recenttracks.track[0].name;
+
+      if (date === undefined) {
+        time = "Currently Playing: "
+      } else {
+        //Moment JS this part?
+        time = "Null: "
+        console.log(date['#text'])
+      }
+
+      //What the bot will spit out in Twitch Chat
+      client.say(streamChannel, time + song + " by " + artist);
+
     });
   }
 
