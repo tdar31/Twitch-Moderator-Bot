@@ -22,6 +22,12 @@ https://trello.com/b/ECw2iJax/twitchbot
 
         *  The following posts the channels rules in the chat.
 
+1. **Current / Last played song**
+
+    * !song
+
+        *   The following grabs the broadcaster's most recent Last.fm scrobble (song played) and displays it in chat.  Would require the broadcaster to have last.fm setup on iTunes/Spotify etc.
+
 1. **Socials**
 
     * The following are a group of commands for posting links to social accounts.  For example the bot has the following but can easily be modified to add and remove other social accounts:
