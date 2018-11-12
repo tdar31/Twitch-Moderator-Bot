@@ -166,9 +166,9 @@ client.on("chat", (channel, user, message, self) => {
     if (message.includes("!slowmode")) {
       var command = message.split(" ");
 
-      //Checks to see if duration input is a number.  Sets to 300 seconds if invalid or blank
+      //Checks to see if duration input is a number.  Sets to 120 seconds if invalid or blank
       if (isNaN(command[1])) {
-        client.slow(streamChannel, 30);
+        client.slow(streamChannel, 120);
         client.action(streamChannel, "The chat has now been set to Slow Mode");
       } else {
         client.slow(streamChannel, command[1]);

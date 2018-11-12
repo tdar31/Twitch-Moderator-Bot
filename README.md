@@ -1,6 +1,6 @@
 # Twitch Moderator Bot
 
-mod_bot_9000 is a basic and nonintrusive Twitch moderator bot that I created using the twitch-js library.  As an example channel, the bot is currently a moderator of twitch.tv/test_9000_channel
+mod_bot_9000 is a basic and nonintrusive Twitch moderator bot that I created using the twitch-js library.  As an example channel, the bot is currently a moderator of twitch.tv/test9000channel
 
 Trello Board:
 https://trello.com/b/ECw2iJax/twitchbot 
@@ -26,7 +26,7 @@ https://trello.com/b/ECw2iJax/twitchbot
 
     * !song
 
-        *   The following grabs the broadcaster's most recent Last.fm scrobble (song played) and displays it in chat.  Would require the broadcaster to have last.fm setup on iTunes/Spotify etc.
+        *   The following grabs the broadcaster's most recent Last.fm scrobble (song played) and displays it in chat. It would require the broadcaster to have last.fm setup on iTunes/Spotify etc.  My personal Last.fm account is currently the placeholder account.
 
 1. **Socials**
 
@@ -48,9 +48,9 @@ https://trello.com/b/ECw2iJax/twitchbot
 
 1. **Slow Mode**
 
-    * !slowmode / !slowmodeoff
+    * !slowmode [duration] / !slowmodeoff
 
-        * The following turns slow mode on and off.  It prevents viewers from .....  This bot, channel mods and the broadcaster are immune.
+        * The following turns slow mode on and off.  It puts a cooldown on messages typed in chat preventing them from typing again until the timer expires.  The commands allows for a custom duration where the units are in seconds.  If the mod/broadcaster does not use a duration or enters a value that isn't a number the duration defaults to 120 seconds.  Mods and broadcasters are not restricted by this command.  This bot, channel mods and the broadcaster are immune.
 
 1. **r9k Mode**
 
@@ -93,32 +93,3 @@ https://trello.com/b/ECw2iJax/twitchbot
     * !host [user] / !unhost [user]
 
         * The following hosts the selected channel.  Unhost will revert the host.
-
-*Design Choices*
---
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Lack of information passed along when Twitch returns an error*
-
-When commands have issues with syntax or formatting Twitch will return an error with the information regarding what occured.  Currently the bot is setup to return those errors in the form of console.log.  The reason why there are no notices for this is for a few reasons.
-
-    * Length and how many types of errors Twitch can return
-
-Many of these errors are a few sentences explaining the issue and often are related to syntax issues for example a ban or timeout on a user that does not exist (likely a spelling error).  There is some sanitation I built into the bot for certain commands such as timeout or followeronly which check for the duration to be a number and if not pass through a hardcoded default number instead.  Additionally from the twitch js library there are xx total possible errors that Twitch can return; many of which are things such as a certain mode is already active or etc. 
-
-    * Bot can quickly become very intrusive to the chat experience
-
-While error information is always important it can be very difficult to naviage how to provide the user with the feedback because of how intrusive it becomes.  If the bot returned the errors in Twitch chat the chat becomes filled with lines of text regarding errors which can completely ruins the chatting experience.  This can be solved somewhat in the form of whispers but 
-
-    * Chat commands are relatively short and sometimes typed quite often
-
-Most commands are under six or seven characters total and most do not take in parameters.  This means a huge majority of errors (100% in the case for viewer commands) returned will be spelling/syntax related.  Using the FAQ command is a way for this to be resolved.
-
-    * Moderators are meant to be trusted and educated
-
-This one is pretty subjective but with the majority of the commands being only accessable to moderators, ideally only a few, trusted and educated viewers should have access to these commands and would be under the discrestion of the broadcaster.  The assumption would be if a broadcaster is granting this power to someone on their channel they would be knowledgable on the function of Twitch chat and the goals of the broadcaster.  Again I'm aware this is pretty subjective and not a great reason but I think it's important to highlight that moderator access isn't something that the majority of users have access too.
-
-Lastly the goal of the bot is to be unintruisve to the channel experience as a whole.  It's meant to help assist the broadcaster and give viewers relavent info but quietly sit in the background outside of that.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; *Lack of language and link filter*
-
-Long story short Twitch's built in language and link parser is pretty robust compared to other parts of Twitch chat.  This is larger due to highly inflamatory language and dangerous links can become a pretty large liablity for channels and Twitch itself so it's something that is currently fairly solid.  Additionally many channels have workarounds for moderating links such as requiring chatters to send it to moderators before it's allowed to be posted or only allowing paid subscribers access to post links.
