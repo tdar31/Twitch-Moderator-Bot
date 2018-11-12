@@ -1,5 +1,6 @@
 require("dotenv").config();
 const twitch = require("twitch-js");
+var moment = require('moment');
 
 var jsdom = require('jsdom');
 const { JSDOM } = jsdom;
@@ -79,27 +80,30 @@ client.on("chat", (channel, user, message, self) => {
     //As a placeholder to show off the function working I have used my personal last.fm account
     var user = "tdnaded";
     var queryURL = "http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=" + user + "&api_key=" + process.env.LFTOKEN + "&format=json";
+    var currentlyPlaying = null;
+
 
     $.ajax({
       url: queryURL,
       method: "GET"
     }).then(function(res) {
-      // console.log(res.recenttracks.track[0].date);
       var time;
       var date = res.recenttracks.track[2].date;
       var artist = res.recenttracks.track[0].artist["#text"];
       var song = res.recenttracks.track[0].name;
 
-      if (date === undefined) {
-        time = "Currently Playing: "
-      } else {
-        //Moment JS this part?
-        time = "Null: "
-        console.log(date['#text'])
-      }
+      // currentlyPlaying = res.recenttracks.track[0]['@attr'].nowplaying;
+      // console.log(date);
+      // if (currentlyPlaying === null) {
+      //   time = "Null: "
+      //   console.log(date['#text'])
+      //   console.log(moment().format("Do MMM YYYY, h:mm"))
+      // } else {
+      //   time = "Currently Playing: "
+      // }
 
       //What the bot will spit out in Twitch Chat
-      client.say(streamChannel, time + song + " by " + artist);
+      client.say(streamChannel, "GivePLZ Song: " + song + " by " + artist + " TakeNRG");
 
     });
   }

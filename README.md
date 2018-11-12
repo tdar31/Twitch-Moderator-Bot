@@ -1,6 +1,6 @@
 # Twitch Moderator Bot
 
-mod_bot_9000 is a basic and nonintrusive Twitch moderator bot that I created using the twitch-js library.  As an example channel, the bot is currently a moderator of twitch.tv/test9000channel
+mod_bot_9000 is a basic and nonintrusive Twitch moderator bot that I created using the twitch-js library, the Last.FM api and Twitch.tv's UI.  As an example channel, the bot is currently a moderator of twitch.tv/test9000channel
 
 Trello Board:
 https://trello.com/b/ECw2iJax/twitchbot 
